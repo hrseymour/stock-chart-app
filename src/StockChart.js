@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_HISTORY_API_BASE_URL;
 
 async function fetchStockData(symbol) {
     const result = await axios.get(`${API_BASE_URL}/stocks/${symbol}`);
