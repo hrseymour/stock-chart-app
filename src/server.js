@@ -8,7 +8,7 @@ const port = 5000;
 
 app.get('/api/stocks/:symbol', async (req, res) => {
   const { symbol } = req.params;
-  const queryOptions = { period1: '2023-01-01', interval: '1d' };
+  const queryOptions = { period1: '2023-03-01', interval: '1d' };
   try {
      const result = await yahooFinance.historical(symbol, queryOptions); 
      res.json({ prices: result }); 
