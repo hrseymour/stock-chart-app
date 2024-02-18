@@ -1,5 +1,5 @@
 import React from 'react';
-import StockChart from './StockChart';
+import StockChart from './components/StockChart';
 import './App.css';
 
 function App() {
