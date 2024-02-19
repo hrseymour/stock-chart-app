@@ -13,6 +13,21 @@ async function fetchStockData(symbol) {
     return { labels, prices };
 }
 
+function StockInput({ symbol, handleSymbolChange, handleChartUpdate }) {
+    return (
+        <div className="input-group">
+            <input
+                type="text"
+                value={symbol}
+                onChange={handleSymbolChange}
+                maxLength="4"
+                className="stock-input"
+            />
+            <button onClick={handleChartUpdate} className="chart-button">Chart</button>
+        </div>
+    );
+}
+
 function StockChart({ initialSymbol, chartColor }) {
     const [symbol, setSymbol] = useState(initialSymbol || '');
     const [chartData, setChartData] = useState(null);
@@ -31,7 +46,7 @@ function StockChart({ initialSymbol, chartColor }) {
                 labels,
                 datasets: [
                     {
-                        label: `Price (${symbol})`,
+                        // label: `Price (${symbol})`,
                         data: prices,
                         borderColor: chartColor,
                         backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -45,16 +60,11 @@ function StockChart({ initialSymbol, chartColor }) {
 
     return (
         <div className="chart-container">
-            <div className="input-group">
-                <input
-                    type="text"
-                    value={symbol}
-                    onChange={handleSymbolChange}
-                    maxLength="4"
-                    className="stock-input"
-                />
-                <button onClick={handleChartUpdate} className="chart-button">Chart</button>
-            </div>
+            <StockInput
+                symbol={symbol}
+                handleSymbolChange={handleSymbolChange}
+                handleChartUpdate={handleChartUpdate}
+            />
             {chartData && <Line data={chartData} />}
         </div>
     );
